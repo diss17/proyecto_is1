@@ -13,13 +13,13 @@ El usuario no debe poder modificar las rutas una vez solicitado el retiro, ya qu
 Los camiones solo deben seguir la ruta creada por el software; en caso de inconvenientes, el chofer puede notificar para trazar una nueva ruta.
 Los datos de los usuarios deben estar protegidos para evitar cualquier tipo de vulnerabilidad.
 
-### Eficiencia 
+#### Eficiencia 
 El tiempo de respuesta para operaciones principales (crear solicitud, consultar rutas) debe ser breve, menor a unos segundos en condiciones normales.
 
 #### Usabilidad
 La interfaz debe ser intuitiva y fácil de usar para todos los usuarios.
 
-### Fiabilidad
+#### Fiabilidad
 La aplicación debe funcionar de manera estable en horario laboral y permitir que los recicladores registren información aun sin conexión, sincronizando los datos al recuperar señal.
 
 
