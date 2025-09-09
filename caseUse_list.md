@@ -1,0 +1,10 @@
+###LISTA DE CASOS DE USO
+1. Generar ruta de recolección (Central de recolección)
+2. Generar solicitud(hogar)
+4. Designar trabajadores/camión(Central de recolección)
+5. Visualizar ruta(chofer/hogar/central)
+7. Ver reportes/analiticas(gubermental)
+8. Generar Reporte(Central)
+9. Solicitar Comprobante(hogar)
+10. Generar Comprobante(Central Recolección)
+11. Revisar historial(Hogar/Central)
