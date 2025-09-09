@@ -6,6 +6,7 @@ De manera similar, el sistema tendrá otra interfaz para la central de recolecci
 Debe ser posible emitir comprobantes digitales (correo/QR) por cada retiro realizado.
 El sistema debe permitir registrar diferentes tipos de usuarios (hogar, reciclador, coordinador, administrador), cada uno con acceso solo a sus funciones.
 El usuario debe poder revisar el historial de solicitudes y cancelarlas antes de su planificación.
+Validar rutas
 
 ### Requisitos no funcionales
 #### Seguridad
