@@ -7,10 +7,12 @@ participant "Sistema" as Sistema
 
 Central -> Sistema: Solicitar generación de reporte
 Sistema -> Sistema: Procesar datos para el reporte
-Sistema --> Central: Entregar Reporte [Si hay éxito]
-... <<extend>> Crear alarma ...
-Sistema --> Central: Generar alterta[Si hay fallo]
-Sistema --> Mantenimiento: Notificar alerta de fallo[Si hay fallo]
+alt Reporte generado con éxito
+    Sistema --> Central: Entregar Reporte
+else Falla en el Reporte
+    Sistema --> Central: Generar alterta
+    Sistema --> Mantenimiento: Notificar altera de fallo
+end
 @enduml
 
 ** URL para hacer diagramas: https://www.planttext.com/
