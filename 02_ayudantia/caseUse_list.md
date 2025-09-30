@@ -1,4 +1,4 @@
-###LISTA DE CASOS DE USO
+### LISTA DE CASOS DE USO
 1. Generar ruta de recolección (Central de recolección)
 2. Generar solicitud(hogar)
 4. Designar trabajadores/camión(Central de recolección)

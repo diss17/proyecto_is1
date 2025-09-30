@@ -1,0 +1,16 @@
+@startuml
+
+actor "Central de recolección" as Central
+actor "Encargados de mantenimiento" as Mantenimiento
+
+participant "Sistema" as Sistema
+
+Central -> Sistema: Solicitar generación de reporte
+Sistema -> Sistema: Procesar datos para el reporte
+alt Reporte generado con éxito
+    Sistema --> Central: Entregar Reporte
+else Falla en el Reporte
+    Sistema --> Central: Generar alterta
+    Sistema --> Mantenimiento: Notificar altera de fallo
+end
+@enduml
