@@ -1,0 +1,17 @@
+@startuml
+actor "Hogar" as Hogar
+participant "Sistema" as Sistema
+participant "Sistema de geolocalización" as Geo
+
+Hogar -> Sistema: generarSolicitud(dirección)
+Sistema -> Geo: capturarDireccionYCoordenadas(dirección)
+Geo --> Sistema: lat,lng
+
+alt Dirección válida (dentro de zona)
+    Sistema -> Sistema: asignarZona(lat,lng)
+    Sistema -> Sistema: guardarSolicitud(estado="pendiente")
+    Sistema --> Hogar: confirmación de solicitud
+else Dirección no válida (fuera de zona)
+    Sistema --> Hogar: mensaje "fuera de zona de cobertura"
+end
+@enduml
