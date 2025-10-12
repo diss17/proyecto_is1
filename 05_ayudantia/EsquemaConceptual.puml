@@ -1,0 +1,79 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Hogar {
+  id
+  nombreContacto
+  direccion
+}
+class Solicitud {
+  id
+  fechaHora
+  tipoMaterial
+  cantidad
+  estado
+}
+class Coordenada {
+  lat
+  lng
+}
+class ZonaCobertura {
+  id
+  nombre
+}
+class CentralDeRecoleccion {
+  id
+  nombre
+}
+class Ruta {
+  id
+  fecha
+  estado
+}
+class PuntoRuta {
+  orden
+  horaEstimada
+  estadoVisita
+}
+class Recolector {
+  id
+  nombre
+}
+class Camion {
+  id
+  patente
+  capacidad
+}
+class Comprobante {
+  id
+  fecha
+  medioEntrega
+}
+class Reporte {
+  id
+  periodo
+  contenido
+}
+class Alerta {
+  id
+  tipo
+  detalle
+}
+
+Hogar "1" -- "0..*" Solicitud
+Solicitud "1" -- "1" Coordenada
+Solicitud "1" -- "1" ZonaCobertura
+
+CentralDeRecoleccion "1" -- "0..*" Ruta
+Ruta "1" -- "1" Camion
+
+Ruta "1..*" -- "0..*" Recolector
+
+Ruta "1" *-- "1..*" PuntoRuta
+PuntoRuta "1" -- "1" Solicitud   
+
+Solicitud "1" -- "0..1" Comprobante
+
+CentralDeRecoleccion "1" -- "0..*" Reporte
+Reporte "1" -- "0..*" Alerta
+@enduml
