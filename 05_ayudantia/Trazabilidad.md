@@ -1,4 +1,4 @@
-# Trazabilidad — UC1 → DSS → Clases
+# Trazabilidad 
 
 En el **UC1: Generar solicitud**, el **Hogar** crea la solicitud indicando tipo de material, cantidad y horario.  
 Este caso **incluye** al **UC2: Verificar ubicación**, en donde el sistema toma la dirección, obtiene las **coordenadas (lat, lng)** y asigna la **zona de cobertura**.  
