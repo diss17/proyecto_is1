@@ -1,4 +1,4 @@
-@startuml
+@startuml k
 
 actor "Central de recolección" as Central
 actor "Encargados de mantenimiento" as Mantenimiento
@@ -11,6 +11,6 @@ alt Reporte generado con éxito
     Sistema --> Central: Entregar Reporte
 else Falla en el Reporte
     Sistema --> Central: Generar alterta
-    Sistema --> Mantenimiento: Notificar altera de fallo
+    Sistema --> Mantenimiento: Notificar alerta de fallo
 end
 @enduml
