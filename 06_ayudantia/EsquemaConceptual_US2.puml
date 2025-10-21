@@ -1,0 +1,46 @@
+@startuml
+' ===== Aspecto visual opcional =====
+skinparam classAttributeIconSize 0
+skinparam ArrowColor #2b6cb0
+skinparam ClassBorderColor #2d3748
+skinparam ClassFontColor #1a202c
+skinparam DefaultFontName Helvetica
+
+' ===== Entidades del dominio del DSS US2 =====
+class Hogar {
+  id
+  nombreContacto
+  direccionTexto
+}
+
+class Solicitud {
+  id
+  fechaHora
+  estado        ' pendiente | rechazada
+  direccion     ' normalizada
+}
+
+class Coordenada {
+  lat
+  lng
+  precision
+}
+
+
+class ZonaCobertura {
+  id
+  nombre
+}
+
+
+' ===== Relaciones (Pertenecientes al DSS) =====
+Hogar "1" -- "0..*" Solicitud : crea >
+Solicitud "1" -- "1" Coordenada : registra >
+' Por el alt del DSS: puede quedar sin zona si está "fuera de cobertura"
+Solicitud "*" -- "1" ZonaCobertura : valida en >
+
+' (Opcional) provienen de un servicio externo
+"Sistema de Geolocalizacion" ..> Coordenada : obtiene >
+"Sistema de Geolocalizacion" ..> Solicitud : normaliza dirección
+}
+@enduml
