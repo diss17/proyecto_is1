@@ -1,17 +1,50 @@
 @startuml
+' --- Configuración ---
+autonumber
+title "Diagrama de Secuencia: UC2 - Verificar Ubicación (include)"
+
+' --- Actores y Participantes ---
+participant "Sistema (Caso de uso 1)" as UC1
+participant "Sistema (Caso de uso 2)" as UC2
+participant "Servicio de Geolocalización\n(API)" as GPS
 actor "Hogar" as Hogar
-participant "Sistema" as Sistema
-participant "Sistema de geolocalización" as Geo
 
-Hogar -> Sistema: generarSolicitud(dirección)
-Sistema -> Geo: capturarDireccionYCoordenadas(dirección)
-Geo --> Sistema: lat,lng
+' --- Flujo ---
+' 1. Un caso de uso (UC1) requiere la ubicación
+UC1 -> UC2: RequerirUbicacion()
 
-alt Dirección válida (dentro de zona)
-    Sistema -> Sistema: asignarZona(lat,lng)
-    Sistema -> Sistema: guardarSolicitud(estado="pendiente")
-    Sistema --> Hogar: confirmación de solicitud
-else Dirección no válida (fuera de zona)
-    Sistema --> Hogar: mensaje "fuera de zona de cobertura"
-end
-@enduml
+
+' 2. El sistema solicita al servicio de geolocalización...
+UC2 -> GPS: SolicitarCoordenadas()
+
+' Manejo del flujo principal y las extensiones 2' y 2''
+alt Flujo Principal (Éxito)
+    ' 3. El servicio responde con la latitud y longitud
+    GPS --> UC2: DevolverCoordenadas(lat, lng)
+
+    
+    ' 4. El sistema valida y devuelve las coordenadas
+    UC2 -> UC2: ValidarCoordenadas(lat, lng)
+    UC2 --> UC1: DevolverUbicacion(lat, lng)
+
+else Extensión 2' (Servicios desactivados)
+    GPS --> UC2: Error(ServiciosDesactivados)
+
+    
+    ' El sistema pide al usuario que los active
+    UC2 --> Hogar: SolicitarActivacionServicios()
+
+    ' (El flujo termina; UC1 es notificado del fallo)
+    UC2 --> UC1: DevolverFallo(ServiciosDesactivados)
+
+
+else Extensión 2'' (Permisos denegados)
+    GPS --> UC2: Error(PermisosDenegados)
+
+    
+    ' El sistema pide al usuario que los otorgue
+    UC2 --> Hogar: SolicitarOtorgarPermisos()
+
+    ' (El flujo termina; UC1 es notificado del fallo)
+    UC2 --> UC1: DevolverFallo(PermisosDenegados)
+    deactivate Hogar

@@ -1,18 +1,42 @@
 @startuml
+' --- Configuración ---
+autonumber
+title "Diagrama de Secuencia: UC3 - Generar Reporte"
 
+' --- Actores y Participantes ---
 actor "Central de recolección" as Central
 actor "Encargados de mantenimiento" as Mantenimiento
-
 participant "Sistema" as Sistema
 
-Central -> Sistema: Solicitar generación de reporte
-Sistema -> Sistema: Procesar datos para el reporte
-alt Reporte generado con éxito
-    Sistema --> Central: Entregar Reporte
-else Falla en el Reporte
-    Sistema --> Central: Generar alterta
-    Sistema --> Mantenimiento: Notificar altera de fallo
-end
-@enduml
+' --- Flujo ---
 
-** URL para hacer diagramas: https://www.planttext.com/
+' 1. El usuario selecciona el tipo de reporte
+Central -> Sistema: Seleccionar tipo de reporte(tipoReporte)
+
+
+' 2. El sistema presenta los filtros
+Sistema --> Central: Presentar filtros disponibles(filtros)
+
+' 3. El usuario confirma la generación
+Central -> Sistema: Confirmar generación(filtrosSeleccionados)
+
+' 4. El sistema recopila los datos
+Sistema -> Sistema: Recopilar y procesar datos(filtrosSeleccionados)
+
+' Aquí se manejan los 3 posibles resultados del procesamiento
+alt Flujo exitoso (Reporte generado)
+    ' 4. ...y los presenta
+    Sistema --> Central: Entregar Reporte(reporteGenerado)
+else Extensión 4': No hay datos
+    ' 4'. No hay datos para generar el reporte
+    Sistema --> Central: Informar("No hay datos para generar el reporte")
+else Paso 5: Fallo crítico (<<extend>> Caso de uso Crear alerta de fallos)
+    ' 5. se ejecuta el caso "Crear alerta de fallos"
+    Sistema -> Sistema: Crear alerta de fallo(datosAnomalos)
+    activate Sistema
+    Sistema --> Mantenimiento: Notificar alerta de fallo(alertaID, errorInfo)
+    Sistema --> Central: Notificar fallo crítico(alertaID, errorInfo)
+    deactivate Sistema
+end
+
+@enduml

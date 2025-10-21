@@ -1,16 +1,44 @@
-@startuml k
+@startuml
+autonumber
+title "Diagrama de Secuencia: UC1 - Generar Solicitud"
 
-actor "Central de recolección" as Central
-actor "Encargados de mantenimiento" as Mantenimiento
-
+' --- Actores y Participantes ---
+actor "Hogar" as Hogar
 participant "Sistema" as Sistema
+participant "UC2: Verificar Ubicación" as UC2
 
-Central -> Sistema: Solicitar generación de reporte
-Sistema -> Sistema: Procesar datos para el reporte
-alt Reporte generado con éxito
-    Sistema --> Central: Entregar Reporte
-else Falla en el Reporte
-    Sistema --> Central: Generar alterta
-    Sistema --> Mantenimiento: Notificar alerta de fallo
+' --- Flujo ---
+
+' 1. El Hogar selecciona la opción
+Hogar -> Sistema: Seleccionar "Nueva solicitud"()
+
+
+' 2. El Hogar especifica el tipo de material
+Hogar -> Sistema: Especificar datos(material, cantidad)
+
+' 3. El sistema invoca el caso de uso UC2 "Verificar Ubicación"
+Sistema -> UC2: VerificarUbicacion()
+
+
+alt Resultado de Geolocalización (Extensión 3')
+    else Geolocalización exitosa
+        UC5 --> Sistema: DevolverUbicacion(ubicacion)
+    else Geolocalización no disponible (3)
+        UC5 --> Sistema: NotificarFalloGeolocalizacion()
+        deactivate UC5
+        Sistema --> Hogar: Solicitar dirección manual()
+        Hogar -> Sistema: IngresarDireccionManual(direccion)
 end
+
+alt Confirmación de Solicitud (Extensión 4')
+    else Hogar confirma (Paso 4)
+        Hogar -> Sistema: Confirmar y Enviar Solicitud()
+        ' 5. El sistema registra la solicitud y notifica
+        Sistema -> Sistema: RegistrarSolicitud(datos, ubicacion)
+        Sistema --> Hogar: NotificarSolicitudRegistrada(solicitudID)
+    else Hogar cancela (4')
+        Hogar -> Sistema: CancelarOperacion()
+        Sistema --> Hogar: OperacionCancelada()
+end
+
 @enduml
