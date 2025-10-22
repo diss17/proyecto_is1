@@ -1,46 +1,73 @@
 @startuml
-' ===== Aspecto visual opcional =====
 skinparam classAttributeIconSize 0
-skinparam ArrowColor #2b6cb0
-skinparam ClassBorderColor #2d3748
-skinparam ClassFontColor #1a202c
-skinparam DefaultFontName Helvetica
+skinparam class {
+    BackgroundColor #f9f9f9
+    BorderColor #2a2a2a
+    FontName Helvetica
+}
 
-' ===== Entidades del dominio del DSS US2 =====
+' === Clases principales del caso de uso ===
 class Hogar {
   id
   nombreContacto
   direccionTexto
+  permisosGPS : boolean
 }
 
-class Solicitud {
-  id
-  fechaHora
-  estado        ' pendiente | rechazada
-  direccion     ' normalizada
+class Sistema {
+  +requerirUbicacion()
+  +validarCoordenadas(lat, lng)
+  +devolverUbicacion(lat, lng)
+  +devolverFallo(tipoError)
+}
+
+class ServicioDeGeolocalizacion <<externalService>> {
+  +solicitarCoordenadas()
+  +devolverCoordenadas(lat, lng)
+  +errorServiciosDesactivados()
+  +errorPermisosDenegados()
 }
 
 class Coordenada {
   lat
   lng
-  precision
 }
 
-
-class ZonaCobertura {
+class Solicitud {
   id
-  nombre
+  fechaHora
+  estado
+  tipoMaterial
 }
 
+' === Relaciones ===
+Hogar "1" -- "0..*" Solicitud
+Solicitud "1" -- "1" Coordenada
+Sistema "1" ..> ServicioDeGeolocalizacion : utiliza >
+Sistema "1" -- "0..*" Solicitud : valida >
+ServicioDeGeolocalizacion ..> Coordenada : genera >
 
-' ===== Relaciones (Pertenecientes al DSS) =====
-Hogar "1" -- "0..*" Solicitud : crea >
-Solicitud "1" -- "1" Coordenada : registra >
-' Por el alt del DSS: puede quedar sin zona si está "fuera de cobertura"
-Solicitud "*" -- "1" ZonaCobertura : valida en >
+'Cardinalidades:
+'1. Hogar "1" -- "0..*" Solicitud
+'Un hogar puede generar muchas solicitudes
+'Cada solicitud pertenece a un solo hogar
 
-' (Opcional) provienen de un servicio externo
-"Sistema de Geolocalizacion" ..> Coordenada : obtiene >
-"Sistema de Geolocalizacion" ..> Solicitud : normaliza dirección
-}
+'2.  Solicitud "1" -- "1" Coordenada 
+'Cada solicitud tiene exactamente una coordenada
+'Cada coordenada pertenece solo a una solicitud
+'Si hay dos solicitudes de la misma dirección el modelo crea dos objetos 
+'Coordenada distintos, con valores lat y lng iguales
+
+'3. Sistema "1" ..> ServicioDeGeolocalizacion : utiliza >
+' Dependencia -> El sistema utiliza un servicio externo para
+' obtener las coordenadas
+
+'4. Sistema "1" -- "0..*" Solicitud : valida >
+' Un sistema puede validar muchas solicitudes (actua como controlador)
+' refleja el DSS
+
+'5. ServicioDeGeolocalizacion ..> Coordenada : genera >
+' Dependencia -> genera/retorna coordenadas cuando es invocado
+' solo produce
+
 @enduml
