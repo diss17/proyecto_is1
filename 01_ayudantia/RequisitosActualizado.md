@@ -1,26 +1,54 @@
-### Requisitos funcionales
-El sistema debe permitir el ingreso de solicitudes por parte de los usuarios para el retiro de sus productos reciclables. Debe contar con un sistema de agrupamiento por zonas geográficas, de manera que se genere una ruta dinámica que optimice la cantidad de puntos de recolección.
-El sistema debe permitir que tanto los trabajadores como la central de recolección puedan visualizar los puntos donde se solicita la recolección en tiempo real, así como la ruta más óptima en función de la demanda, considerando que por horarios puede haber pocos o ningún punto de recolección.
-El sistema debe permitir que el usuario (quien crea la solicitud) pueda ver o hacer seguimiento al camión de recolección, ya sea de manera gráfica o con un tiempo estimado, para saber si el camión ya pasó por su hogar o si vendrá más tarde en el día.
-De manera similar, el sistema tendrá otra interfaz para la central de recolección, donde podrán ver el seguimiento del camión para realizar posibles modificaciones de ruta y tener un control más claro de sus trabajadores.
-Debe ser posible emitir comprobantes digitales (correo/QR) por cada retiro realizado.
-El sistema debe permitir registrar diferentes tipos de usuarios (hogar, reciclador, coordinador, administrador), cada uno con acceso solo a sus funciones.
-El usuario debe poder revisar el historial de solicitudes y cancelarlas antes de su planificación.
-Validar rutas
+### 3. Requerimientos del sistema
 
-### Requisitos no funcionales
-#### Seguridad
-El usuario no debe poder modificar las rutas una vez solicitado el retiro, ya que esto es decisión exclusiva de la central.
-Los camiones solo deben seguir la ruta creada por el software; en caso de inconvenientes, el chofer puede notificar para trazar una nueva ruta.
-Los datos de los usuarios deben estar protegidos para evitar cualquier tipo de vulnerabilidad.
+## 3.1. Requerimientos funcionales
 
-#### Eficiencia 
-El tiempo de respuesta para operaciones principales (crear solicitud, consultar rutas) debe ser breve, menor a unos segundos en condiciones normales.
+**RF1.** El sistema debe permitir el ingreso de solicitudes por parte de los hogares para el retiro de materiales reciclables.
 
-#### Usabilidad
-La interfaz debe ser intuitiva y fácil de usar para todos los usuarios.
+**RF2.** El sistema debe validar automáticamente la ubicación geográfica del solicitante.
 
-#### Fiabilidad
-La aplicación debe funcionar de manera estable en horario laboral y permitir que los recicladores registren información aun sin conexión, sincronizando los datos al recuperar señal.
+**RF3.** El sistema debe agrupar las solicitudes por zonas geográficas para generar rutas óptimas.
 
+**RF4.** El sistema debe permitir que los trabajadores y la central de recolección visualicen en tiempo real
+los puntos y rutas activas.
 
+**RF5.** El sistema debe permitir a los hogares hacer seguimiento del camión de recolección (posición o tiempo
+estimado).
+
+**RF6.** La central de recolección debe poder modificar rutas y monitorear el estado de los vehículos.
+
+**RF7.** El sistema debe emitir comprobantes digitales por cada retiro realizado.
+
+**RF8.** El sistema debe registrar distintos tipos de usuarios (hogar, reciclador, coordinador, administrador)
+con sus respectivos permisos.
+
+**RF9.** El usuario debe poder revisar el historial de solicitudes y cancelarlas antes de su planificación.
+
+### 3.2. Requerimientos no funcionales
+
+**Seguridad**
+
+Los usuarios no deben poder modificar las rutas una vez generadas.
+
+Los datos personales deben mantenerse protegidos mediante autenticación y cifrado.
+
+Los camiones deben seguir la ruta asignada; en caso de inconvenientes, el chofer puede notificar al
+sistema para recalcular. El 100 % de los desvíos deben registrarse en menos de 1 minuto desde el
+evento.
+
+**Eficiencia**
+
+El tiempo de respuesta para operaciones críticas (crear solicitud, consultar rutas) debe ser inferior
+a 3 segundos en condiciones normales.
+
+**Usabilidad**
+
+La interfaz debe ser intuitiva, accesible y adaptada a distintos dispositivos.
+
+**Fiabilidad**
+
+La aplicación debe funcionar de forma estable durante la jornada laboral, con una disponibilidad
+mayor o igual al 99.5 % durante el horario operativo.
+
+Los recicladores deben poder registrar información sin conexión, sincronizando los datos al recuperar
+la señal. La sincronización automática debe completarse dentro de los 2 minutos posteriores a la
+reconexión.
