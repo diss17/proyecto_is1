@@ -51,8 +51,7 @@ class Comprobante {
 }
 class Reporte {
   id
-  ' <- agregado (UC3)
-  tipo        
+  tipo
   periodo
   contenido
 }
@@ -67,16 +66,17 @@ Solicitud "1" -- "1" Coordenada
 Solicitud "1" -- "1" ZonaCobertura
 
 CentralDeRecoleccion "1" -- "0..*" Ruta
-Ruta "1" -- "1" Camion
-Ruta "1..*" -- "0..*" Recolector
+Ruta "0..*" -- "0..1" Camion
+
+Ruta "0..*" -- "1..*" Recolector
 
 Ruta "1" -- "1..*" PuntoRuta
-' cambio: permite solicitud sin ruta aun
-PuntoRuta "1" -- "0..1" Solicitud
 
+PuntoRuta "0..1" -- "1" Solicitud
 
 Solicitud "1" -- "0..1" Comprobante
 
 CentralDeRecoleccion "1" -- "0..*" Reporte
 Reporte "1" -- "0..*" Alerta
+
 @enduml
