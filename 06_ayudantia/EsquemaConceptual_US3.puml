@@ -1,0 +1,78 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #f9f9f9
+  BorderColor #2a2a2a
+  FontName Helvetica
+}
+
+'=== Diagrama de clases (US3: Generar Reporte) ===
+class CentralDeRecoleccion {
+  id
+  nombre
+  generarReporte(tipo, filtros)
+}
+
+class Reporte {
+  id
+  tipo
+  periodo
+  contenido
+  formatoExportacion
+}
+
+class Solicitud {
+  id
+  fechaHora
+  tipoMaterial
+  cantidad
+  estado
+  zona
+}
+
+class Ruta {
+  id
+  fecha
+  estado
+}
+
+class PuntoRuta {
+  orden
+  horaEstimada
+  estadoVisita
+}
+
+class Recolector {
+  id
+  nombre
+}
+
+class Camion {
+  id
+  patente
+  capacidad
+}
+
+class Alerta {
+  id
+  tipo
+  detalle
+  fecha
+}
+
+' --- Relaciones ---
+CentralDeRecoleccion "1" -- "0..*" Reporte
+Reporte "1" -- "0..*" Alerta
+CentralDeRecoleccion "1" -- "0..*" Ruta
+Ruta "1" -- "1..*" PuntoRuta
+PuntoRuta "0..1" -- "1" Solicitud
+Ruta "1" -- "0..*" Recolector
+Ruta "0..1" -- "0..1" Camion
+
+note left of Reporte
+  El reporte se construye agregando
+  datos de `Solicitud`, `Ruta` y objetos
+  asociados según los filtros seleccionados.
+end note
+
+@enduml

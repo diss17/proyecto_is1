@@ -1,0 +1,67 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #f9f9f9
+  BorderColor #2a2a2a
+  FontName Helvetica
+}
+
+'=== Diagrama de clases (US1: Generar Solicitud) ===
+class Hogar {
+  id
+  nombreContacto
+  direccionTexto
+  permisosGPS : boolean
+}
+
+class Solicitud {
+  id
+  fechaHora
+  tipoMaterial
+  cantidad
+  estado
+}
+
+class Coordenada {
+  lat
+  lng
+}
+
+class ZonaCobertura {
+  id
+  nombre
+}
+
+class ServicioDeGeolocalizacion <<externalService>> {
+  +solicitarCoordenadas()
+  +devolverCoordenadas(lat, lng)
+}
+
+class CentralDeRecoleccion {
+  id
+  nombre
+}
+
+class Comprobante {
+  id
+  fecha
+  medioEntrega
+}
+
+' --- Relaciones ---
+Hogar "1" -- "0..*" Solicitud
+Solicitud "1" -- "1" Coordenada
+Solicitud "1" -- "1" ZonaCobertura
+Solicitud "1" -- "0..1" Comprobante
+
+' Dependencias y mensajes relevantes en el DSS
+Sistema ..> ServicioDeGeolocalizacion : utiliza
+Solicitud --> CentralDeRecoleccion : notificarNuevaSolicitud()
+
+note right of ServicioDeGeolocalizacion
+  Servicio externo encargado de
+  obtener lat/lng a partir de la
+  dirección o del dispositivo
+end note
+
+@enduml

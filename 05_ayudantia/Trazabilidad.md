@@ -24,3 +24,7 @@ Con esos datos, la solicitud se guarda con **estado = “Pendiente”** y se **a
 - **Camión 1—0..*** **Ruta** (un camión puede ejecutar varias rutas en fechas y/o turnos distintos).  
 - **Central de Recolección 1—0..*** **Reporte** (la Central puede generar reportes operativos que sirven para detectar posibles errores en las diferentes partes del proceso de recolección).  
 - **Reporte 1—0..*** **Alerta** (un reporte puede derivar en varias alertas).
+
+## Párrafo de trazabilidad 
+
+En el caso de uso **UC1: Generar Solicitud** su DSS muestra mensajes claros entre el actor *Hogar* y el *Sistema* (p. ej. "crear/enviar solicitud", "geocodificar", "notificar a la Central"). Cada uno de esos mensajes se mapea directamente a elementos del esquema conceptual: el mensaje "crear/enviar solicitud" corresponde a la creación o actualización de una instancia de la clase **Solicitud** (con atributos como tipoMaterial, cantidad, fecha/hora, estado); la operación "geocodificar" produce o actualiza una instancia de **Coordenada** (lat, lng) que se asocia a la **Solicitud**; la asignación de cobertura corresponde a la asociación con **ZonaCobertura**; y la notificación implica la participación de **CentralDeRecoleccion** (que luego puede agrupar solicitudes en **Ruta** y **PuntoRuta**). En conjunto, el DSS describe el flujo dinámico de mensajes y el esquema conceptual muestra las clases y relaciones que almacenan y mantienen el estado creado por esos mensajes.
