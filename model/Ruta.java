@@ -1,27 +1,31 @@
 package model;
 
 import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ruta {
     private int id;
-    private Date fecha;
+    private LocalDate fecha;
     private String estado;
     private List<PuntoRuta> puntosRuta;
     private List<Recolector> recolectores;
     private Camion camion;
 
-    public Ruta(int id, Date fecha, String estado) {
+    public Ruta(int id, LocalDate fecha, String estado) {
         this.id = id;
         this.fecha = fecha;
         this.estado = estado;
+        this.puntosRutas = new ArrayList<>();
+        this.recolectores = new ArrayList<>();
     }
 
     // Getters y setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
-    public Date getFecha() { return fecha; }
-    public void setFecha(Date fecha) { this.fecha = fecha; }
+    public LocalDate getFecha() { return fecha; }
+    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }
     public List<PuntoRuta> getPuntosRuta() { return puntosRuta; }
