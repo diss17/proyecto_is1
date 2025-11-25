@@ -1,5 +1,5 @@
 package model;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Recolector {
@@ -10,6 +10,7 @@ public class Recolector {
     public Recolector(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
+        this.rutas = new ArrayList<>();
     }
 
     // Getters y setters
