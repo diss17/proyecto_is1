@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Camion {
@@ -12,6 +13,7 @@ public class Camion {
         this.id = id;
         this.patente = patente;
         this.capacidad = capacidad;
+        this.rutas = new ArrayList<>();
     }
 
     // Getters y setters

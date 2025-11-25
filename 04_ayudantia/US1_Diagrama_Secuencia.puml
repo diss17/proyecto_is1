@@ -22,10 +22,10 @@ Sistema -> UC2: VerificarUbicacion()
 
 alt Resultado de Geolocalización (Extensión 3')
     else Geolocalización exitosa
-        UC5 --> Sistema: DevolverUbicacion(ubicacion)
+        UC2 --> Sistema: DevolverUbicacion(ubicacion)
     else Geolocalización no disponible (3)
-        UC5 --> Sistema: NotificarFalloGeolocalizacion()
-        deactivate UC5
+        UC2 --> Sistema: NotificarFalloGeolocalizacion()
+        deactivate UC2
         Sistema --> Hogar: Solicitar dirección manual()
         Hogar -> Sistema: IngresarDireccionManual(direccion)
 end

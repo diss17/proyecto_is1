@@ -1,8 +1,10 @@
 package model;
 
+import java.time.LocalDateTime;
+
 public class Solicitud {
     private int id;
-    private String fechaHora;
+    private LocalDateTime fechaHora;
     private String tipoMaterial;
     private int cantidad;
     private String estado;
@@ -12,7 +14,7 @@ public class Solicitud {
     private CentralDeRecoleccion central;
     private Comprobante comprobante;
 
-    public Solicitud(int id, String fechaHora, String tipoMaterial, int cantidad, String estado) {
+    public Solicitud(int id, LocalDateTime fechaHora, String tipoMaterial, int cantidad, String estado) {
         this.id = id;
         this.fechaHora = fechaHora;
         this.tipoMaterial = tipoMaterial;
@@ -25,8 +27,8 @@ public class Solicitud {
     // Getters y setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
-    public String getFechaHora() { return fechaHora; }
-    public void setFechaHora(String fechaHora) { this.fechaHora = fechaHora; }
+    public LocalDateTime getFechaHora() { return fechaHora; }
+    public void setFechaHora(LocalDateTime fechaHora) { this.fechaHora = fechaHora; }
     public String getTipoMaterial() { return tipoMaterial; }
     public void setTipoMaterial(String tipoMaterial) { this.tipoMaterial = tipoMaterial; }
     public int getCantidad() { return cantidad; }

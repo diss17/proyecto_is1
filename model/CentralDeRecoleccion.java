@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CentralDeRecoleccion {
@@ -11,6 +12,8 @@ public class CentralDeRecoleccion {
     public CentralDeRecoleccion(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
+        this.reportes = new ArrayList<>();
+        this.rutas = new ArrayList<>();
     }
 
     public void generarReporte(String tipo, String filtros) {}
