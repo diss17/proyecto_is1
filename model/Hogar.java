@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Hogar {
@@ -14,6 +15,7 @@ public class Hogar {
         this.nombreContacto = nombreContacto;
         this.direccionTexto = direccionTexto;
         this.permisosGPS = permisosGPS;
+        this.solicitudes = New ArrayList<>();
     }
 
     // Getters y setters
