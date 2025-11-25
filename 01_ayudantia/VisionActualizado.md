@@ -20,7 +20,7 @@ Ademas, la falta de comprobantes digitales y la ausencia de un sistema centraliz
 ## Visión de la solución/producto
 
 ### Propuesta
-Una plataforma móvil que permita a los hogares generar solicitudes de retiro, en la cual se valide su ubicación geografica, para que este agrupe y optimice rutas dentro de la zona de cobertura, habilite a los recolectores a reportar los resultados de sus retiros, emitiendo comprantes para los hogares. Segun el tipo de acceso que se tenga(Usuario/Recolector/Coordinador de Recoleccion) se acceda a una interfaz diferente de manera que cada persona que participa del proceso de recoleccion de reciclaje le sea comodo el uso de la aplicacion.
+Una plataforma móvil que permita a los hogares generar solicitudes de retiro, en la cual se valide su ubicación geografica, para que este agrupe y optimice rutas dentro de la zona de cobertura, habilite a los recolectores a reportar los resultados de sus retiros, emitiendo comprobantes para los hogares. Segun el tipo de acceso que se tenga(Usuario/Recolector/Coordinador de Recoleccion) se acceda a una interfaz diferente de manera que cada persona que participa del proceso de recoleccion de reciclaje le sea comodo el uso de la aplicacion.
 
 
 
