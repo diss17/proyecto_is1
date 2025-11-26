@@ -1,20 +1,20 @@
 **Caso de Uso UCX:** [Nombre del Caso de Uso]
 **Actor Principal:** [Actor que inicia el caso de uso]
 **Actores involucrados e intereses:**
-â€¢ [Actor]: [InterÃ©s]
-â€¢ [Actor]: [InterÃ©s]
+- [Actor]: [Interés]
+- [Actor]: [Interés]
 **Precondiciones:** [Estado del sistema o contexto previo necesario]
-**Postcondiciones (garantÃ­as de Ã©xito)**: [Estado del sistema despuÃ©s del caso exitoso]
-Escenario principal de Ã©xito (Flujo BÃ¡sico):
+**Postcondiciones (garantías de éxito)**: [Estado del sistema después del caso exitoso]
+Escenario principal de éxito (Flujo Básico):
 
 1. [Paso 1]
 2. [Paso 2]
 ...
 Extensiones (Flujos Alternativos):
-[Paso]' [CondiciÃ³n] :
+[Paso]' [Condición] :
 
-- [AcciÃ³n alternativa]
+- [Acción alternativa]
 
-[Paso]'' [Otra condiciÃ³n]:
+[Paso]'' [Otra condición]:
 
-- [Otra acciÃ³n alternativa]
+- [Otra acción alternativa]

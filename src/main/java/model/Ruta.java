@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ public class Ruta {
         this.id = id;
         this.fecha = fecha;
         this.estado = estado;
-        this.puntosRutas = new ArrayList<>();
+        this.puntosRuta = new ArrayList<>();
         this.recolectores = new ArrayList<>();
     }
 

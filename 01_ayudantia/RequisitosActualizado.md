@@ -4,24 +4,24 @@
 
 **RF1.** El sistema debe permitir el ingreso de solicitudes por parte de los hogares para el retiro de materiales reciclables.
 
-**RF2.** El sistema debe validar autom谩ticamente la ubicaci贸n geogr谩fica del solicitante.
+**RF2.** El sistema debe validar autom醫icamente la ubicaci髇 geogr醘ica del solicitante.
 
-**RF3.** El sistema debe agrupar las solicitudes por zonas geogr谩ficas para generar rutas 贸ptimas.
+**RF3.** El sistema debe agrupar las solicitudes por zonas geogr醘icas para generar rutas 髉timas.
 
-**RF4.** El sistema debe permitir que los trabajadores y la central de recolecci贸n visualicen en tiempo real
+**RF4.** El sistema debe permitir que los trabajadores y la central de recolecci髇 visualicen en tiempo real
 los puntos y rutas activas.
 
-**RF5.** El sistema debe permitir a los hogares hacer seguimiento del cami贸n de recolecci贸n (posici贸n o tiempo
+**RF5.** El sistema debe permitir a los hogares hacer seguimiento del cami髇 de recolecci髇 (posici髇 o tiempo
 estimado).
 
-**RF6.** La central de recolecci贸n debe poder modificar rutas y monitorear el estado de los veh铆culos.
+**RF6.** La central de recolecci髇 debe poder modificar rutas y monitorear el estado de los veh韈ulos.
 
 **RF7.** El sistema debe emitir comprobantes digitales por cada retiro realizado.
 
 **RF8.** El sistema debe registrar distintos tipos de usuarios (hogar, reciclador, coordinador, administrador)
 con sus respectivos permisos.
 
-**RF9.** El usuario debe poder revisar el historial de solicitudes y cancelarlas antes de su planificaci贸n.
+**RF9.** El usuario debe poder revisar el historial de solicitudes y cancelarlas antes de su planificaci髇.
 
 ### 3.2. Requerimientos no funcionales
 
@@ -29,15 +29,15 @@ con sus respectivos permisos.
 
 Los usuarios no deben poder modificar las rutas una vez generadas.
 
-Los datos personales deben mantenerse protegidos mediante autenticaci贸n y cifrado.
+Los datos personales deben mantenerse protegidos mediante autenticaci髇 y cifrado.
 
 Los camiones deben seguir la ruta asignada; en caso de inconvenientes, el chofer puede notificar al
-sistema para recalcular. El 100 % de los desv铆os deben registrarse en menos de 1 minuto desde el
+sistema para recalcular. El 100 % de los desv韔s deben registrarse en menos de 1 minuto desde el
 evento.
 
 **Eficiencia**
 
-El tiempo de respuesta para operaciones cr铆ticas (crear solicitud, consultar rutas) debe ser inferior
+El tiempo de respuesta para operaciones cr韙icas (crear solicitud, consultar rutas) debe ser inferior
 a 3 segundos en condiciones normales.
 
 **Usabilidad**
@@ -46,9 +46,9 @@ La interfaz debe ser intuitiva, accesible y adaptada a distintos dispositivos.
 
 **Fiabilidad**
 
-La aplicaci贸n debe funcionar de forma estable durante la jornada laboral, con una disponibilidad
+La aplicaci髇 debe funcionar de forma estable durante la jornada laboral, con una disponibilidad
 mayor o igual al 99.5 % durante el horario operativo.
 
-Los recicladores deben poder registrar informaci贸n sin conexi贸n, sincronizando los datos al recuperar
-la se帽al. La sincronizaci贸n autom谩tica debe completarse dentro de los 2 minutos posteriores a la
-reconexi贸n.
+Los recicladores deben poder registrar informaci髇 sin conexi髇, sincronizando los datos al recuperar
+la se馻l. La sincronizaci髇 autom醫ica debe completarse dentro de los 2 minutos posteriores a la
+reconexi髇.

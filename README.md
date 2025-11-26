@@ -1,16 +1,16 @@
-# Proyecto Semestral - Ingenieria de Software 1
+# Proyecto Semestral - Ingeniería de Software 1
 
 ## Equipo 11
 
 Integrantes:
 
-- Nicolas Renato Ricciardi AcuÃ±a
+- Nicolas Renato Ricciardi Acuña
 - Mario Cesar Salgado Orellana
-- JoaquÃ­n Ignacio San Martin Vargas
+- Joaquín Ignacio San Martin Vargas
 - Daniel Ignacio Soto Salgado
 
-> Directorios organizados segun avance por ayudantia.
+> Directorios organizados según avance por ayudantía.
 
-## Enlaces Ãºtiles
+## Enlaces útiles
 
 - [PlantText - Editor de diagramas online](https://www.planttext.com)
