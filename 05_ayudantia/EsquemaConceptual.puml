@@ -49,17 +49,8 @@ class Comprobante {
   fecha
   medioEntrega
 }
-class Reporte {
-  id
-  tipo
-  periodo
-  contenido
-}
-class Alerta {
-  id
-  tipo
-  detalle
-}
+
+' --- Relaciones ---
 
 Hogar "1" -- "0..*" Solicitud
 Solicitud "1" -- "1" Coordenada
@@ -76,7 +67,6 @@ PuntoRuta "0..1" -- "1" Solicitud
 
 Solicitud "1" -- "0..1" Comprobante
 
-CentralDeRecoleccion "1" -- "0..*" Reporte
-Reporte "1" -- "0..*" Alerta
+Recolector "1" -- "0..*" Comprobante
 
 @enduml
