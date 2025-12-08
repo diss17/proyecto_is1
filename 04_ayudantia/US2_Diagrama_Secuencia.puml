@@ -15,7 +15,7 @@ UC1 -> UC2: RequerirUbicacion()
 
 
 ' 2. El sistema solicita al servicio de geolocalización...
-UC2 -> GPS: SolicitarCoordenadas()
+UC2 -> GPS: SolicitarCoordenadas(direccionCliente)
 
 ' Manejo del flujo principal y las extensiones 2' y 2''
 alt Flujo Principal (Éxito)
