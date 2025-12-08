@@ -1,0 +1,74 @@
+@startuml DiagramaCasosDeUso
+' Título del Diagrama
+title Diagrama de Casos de Uso - Sistema de Reciclaje
+skinparam titleAlignment center
+
+' Dirección principal del flujo
+left to right direction
+
+' --- Actores ---
+actor "Hogar" as hogar
+actor "Conductor de Camión" as conductor
+actor "Gestor de Geolocalización" as gps
+actor "Central de Recolección" as central
+actor "Recolectores" as recolectores
+actor "Encargados de Mantenimiento" as mantenimiento
+
+' --- Contenedor del Sistema ---
+rectangle "Aplicación Móvil de Reciclaje" {
+
+  ' -- Casos de Uso Hogar --
+  usecase "Generar Solicitud" as UC1
+  usecase "Solicitar Comprobante" as UC2
+  usecase "Ver historial" as UC3
+  
+  ' CAMBIO: Caso específico para el Hogar (RF5)
+  usecase "Seguir Camión" as UC_Seguimiento 
+
+  ' -- Servicio Externo --
+  usecase "Verificar Ubicación" as UC5
+
+  ' -- Casos de Uso Central / Operaciones --
+  usecase "Generar Analíticas" as UC6
+  usecase "Generar Solicitud de recolección" as UC7
+  usecase "Generar Ruta" as UC8
+  
+  ' CAMBIO: Caso específico para Conductor/Central (RF4)
+  usecase "Visualizar Ruta Asignada" as UC_VisualizarRuta 
+
+  usecase "Generar Reporte" as UC9
+  usecase "Crear alerta de fallos" as UC10
+  
+  ' -- Casos de Uso Recolectores/Mantenimiento --
+  usecase "Emitir Comprobante" as UC11
+  usecase "Realizar Mantenimiento" as UC12
+} 
+
+' --- Relaciones de Actores ---
+' Hogar
+hogar -- UC1
+hogar -- UC2
+hogar -- UC3
+hogar -- UC_Seguimiento
+
+' Conductor
+conductor -- UC_VisualizarRuta
+
+' Central 
+central -- UC6
+central -- UC7
+central -- UC8
+central -- UC_VisualizarRuta
+central -- UC9
+
+' Otros Actores
+gps -- UC5
+recolectores -- UC11
+mantenimiento -- UC9
+mantenimiento -- UC12
+
+' --- Relaciones Internas (Include/Extend) ---
+UC1 ..> UC5 : <<include>>
+UC9 ..> UC10 : <<extend>>
+
+@enduml
