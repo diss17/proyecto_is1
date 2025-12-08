@@ -1,6 +1,5 @@
 @startuml DiagramaCasosDeUso
 ' Título del Diagrama
-title Diagrama de Casos de Uso - Sistema de Reciclaje
 skinparam titleAlignment center
 
 ' Dirección principal del flujo
