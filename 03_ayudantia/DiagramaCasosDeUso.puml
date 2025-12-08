@@ -68,6 +68,6 @@ mantenimiento -- UC12
 
 ' --- Relaciones Internas (Include/Extend) ---
 UC1 ..> UC5 : <<include>>
-UC9 ..> UC10 : <<extend>>
+UC9 <. UC10 : <<extend>>
 
 @enduml
