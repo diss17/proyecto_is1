@@ -1,0 +1,153 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #f9f9f9
+  BorderColor #2a2a2a
+  FontName Helvetica
+}
+
+title Diagrama general de clases (UC1, UC2, UC3)
+
+class Sistema {
+  +crearSolicitud(hogarId, datos)
+  +requerirUbicacion()
+  +validarCoordenadas(lat, lng): boolean
+  +devolverCoordenadas(lat, lng)
+  +devolverFallo(tipoError)
+  +notificarNuevaSolicitud(id)
+  +consultarDatos(filtros)
+}
+
+class ServicioDeGeolocalizacion <<externalService>> {
+  +solicitarCoordenadas()
+  +devolverCoordenadas(lat, lng)
+  +errorServiciosDesactivados()
+  +errorPermisosDenegados()
+}
+
+class Hogar {
+  id
+  nombreContacto
+  direccionTexto
+  telefono
+  permisosGPS : boolean
+}
+
+class Solicitud {
+  id
+  fechaHora : LocalDateTime
+  tipoMaterial
+  cantidad
+  estado
+  origen
+}
+
+class Coordenada {
+  lat : double
+  lng : double
+}
+
+class ZonaCobertura {
+  id
+  nombre
+  radioKm : double
+  contiene(Coordenada) : boolean
+}
+
+class Comprobante {
+  id
+  fecha : LocalDateTime
+  medioEntrega
+}
+
+class CentralDeRecoleccion {
+  id
+  nombre
+  generarRutas()
+  actualizarRuta()
+  generarReporte(tipo, filtros)
+}
+
+class Ruta {
+  id
+  fecha : LocalDate
+  estado
+}
+
+class PuntoRuta {
+  orden
+  horaEstimada : LocalDateTime
+  estadoVisita
+}
+
+class Recolector {
+  id
+  nombre
+}
+
+class Camion {
+  id
+  patente
+  capacidadKg : double
+}
+
+class Reporte {
+  id
+  tipo
+  periodo
+  contenido
+  formatoExportacion
+}
+
+class Alerta {
+  id
+  tipo
+  detalle
+  fecha : LocalDateTime
+}
+
+class DatosOperacionales {
+  +filtrar(filtros)
+}
+
+' Asociaciones UC1 / UC2
+Hogar "1" -- "0..*" Solicitud : realiza
+Solicitud "1" -- "1" Coordenada : ubicada_en
+Solicitud "1" -- "1" ZonaCobertura : pertenece_a
+Solicitud "1" -- "0..1" Comprobante : resulta_en
+Sistema "1" -- "0..*" Solicitud : gestiona >
+Sistema ..> ServicioDeGeolocalizacion : utiliza >
+Sistema ..> ZonaCobertura : buscaZonaPorCoordenada >
+
+' Planificacion y ejecucion de rutas (UC2)
+CentralDeRecoleccion "1" -- "0..*" Ruta : planifica
+Ruta "1" -- "1..*" PuntoRuta : formada_por
+PuntoRuta "0..1" -- "1" Solicitud : atiende
+Ruta "0..1" -- "0..1" Camion : utiliza
+Ruta "1" -- "0..*" Recolector : tripulada_por
+Solicitud "0..1" -- "1" Ruta : asignada
+
+' Reporteria y alertas (UC3)
+CentralDeRecoleccion "1" -- "0..*" Reporte : solicita >
+Sistema "1" ..> Reporte : construye >
+Sistema "1" ..> DatosOperacionales : consulta >
+Reporte "1" -- "0..*" Alerta : incluye [opt]
+Alerta "*" --> "0..1" Ruta
+Alerta "*" --> "0..1" Camion
+
+note right of Solicitud
+  atributo origen cubre ubicacion manual
+  del flujo alternativo (direccion_manual)
+end note
+
+note right of ServicioDeGeolocalizacion
+  Servicio externo para obtener y validar
+  coordenadas a partir de direccion o GPS.
+end note
+
+note right of DatosOperacionales
+  Representa las fuentes de datos que
+  alimentan el reporte segun filtros.
+end note
+
+@enduml
